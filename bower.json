@@ -1,6 +1,6 @@
 {
   "name": "angular-xdan-datetimepicker",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "homepage": "https://github.com/JamesWooldridge/angular-xdan-datetimepicker",
   "description": "Angular Directive for xdan/datetimepicker",
   "main": "datetimepicker.js",
