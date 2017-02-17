@@ -7,9 +7,10 @@ datetimepicker.directive('xdanDatetimepicker', function() {
             user_options: '=xdanDatetimepicker',
             picker_type_option: '@pickerType',
             view_format_option: '@viewFormat',
-            model_format_option: '@modelFormat'
+            model_format_option: '@modelFormat',
+            placeholderValue: '@'
         },
-        template: '<input type="text">',
+        template: '<input type="text" placeholder="{{ placeholderValue }}">',
         link: function(scope, element, attrs, ngModelController) {
             // The most famous date format in my country ;)
             var DEFAULT_VIEW_DATE_FORMAT = 'd-m-Y',
@@ -79,7 +80,7 @@ datetimepicker.directive('xdanDatetimepicker', function() {
                 scope.options.onChangeDateTime = function(current_time, input) {
                     scope.user_options.onChangeDateTime();
                     if (ngModelController) {
-                        if (scope.picker_type == 'datetime') {
+                        if (current_time && scope.picker_type != 'datetime') {
                             ngModelController.$setViewValue(current_time);
                         } else {
                             ngModelController.$setViewValue(current_time.dateFormat(scope.model_format));
@@ -89,7 +90,7 @@ datetimepicker.directive('xdanDatetimepicker', function() {
             } else {
                 scope.options.onChangeDateTime = function(current_time, input) {
                     if (ngModelController) {
-                        if (scope.picker_type != 'datetime') {
+                        if (current_time && scope.picker_type != 'datetime') {
                             ngModelController.$setViewValue(current_time.dateFormat(scope.model_format));
                         } else {
                             ngModelController.$setViewValue(current_time);
