@@ -1,6 +1,6 @@
 {
   "name": "angular-xdan-datetimepicker",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "homepage": "https://github.com/JamesWooldridge/angular-xdan-datetimepicker",
   "description": "Angular Directive for xdan/datetimepicker",
   "main": "datetimepicker.js",
@@ -20,6 +20,9 @@
       "name": "Yusuf Ali",
       "email": "tyaslab.com@gmail.com",
       "homepage": "http://tyaslab.com"
+    },
+    {
+      "name": "James Wooldridge"
     }
   ],
   "license": "MIT",

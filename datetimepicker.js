@@ -1,6 +1,6 @@
 var datetimepicker = angular.module('xdan.datetimepicker', []);
 
-datetimepicker.directive('xdanDatetimepicker', function() {
+datetimepicker.directive('xdanDatetimepicker', function($compile) {
     return {
         require: '?ngModel',
         scope: {
@@ -100,6 +100,24 @@ datetimepicker.directive('xdanDatetimepicker', function() {
             }
 
             if (ngModelController) {
+                /**
+                 *  Add clear button to the input
+                 */
+                var wrapperDiv = angular.element('<div class="clear-input-btn-wrapper">');
+                var button = $compile('<i class="clear-input-btn fa fa-times" ng-click="clearValue()"></i>')(scope);
+
+                element.wrap(wrapperDiv);
+                element.parent().append(button);
+
+                scope.clearValue = function() {
+                  if (ngModelController.$viewValue !== '') {
+                    ngModelController.$setViewValue('');
+                    element.find('input[type=text]').val('');
+                  }
+
+                  ngModelController.$render();
+                };
+
                 ngModelController.$render = function() {
                     element.find('input[type=text]').datetimepicker(scope.options);
                 };
